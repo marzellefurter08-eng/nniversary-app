@@ -7,14 +7,18 @@ import MilestoneTimeline from './components/MilestoneTimeline'
 import CarComparison from './components/CarComparison'
 import H2RBikeShowcase from './components/H2RBikeShowcase'
 import LiveTelemetry from './components/LiveTelemetry'
+import LoveMessageModal from './components/LoveMessageModal'
 
 function App() {
   const [showWelcome, setShowWelcome] = useState(true)
   const [engineStarted, setEngineStarted] = useState(false)
+  const [showLoveMessage, setShowLoveMessage] = useState(false)
 
   const handleEnterDashboard = () => {
     setShowWelcome(false)
     setEngineStarted(true)
+    // Show love message after a short delay
+    setTimeout(() => setShowLoveMessage(true), 1000)
   }
 
   return (
@@ -166,6 +170,9 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Love Message Modal */}
+      <LoveMessageModal isOpen={showLoveMessage} onClose={() => setShowLoveMessage(false)} />
     </div>
   )
 }
