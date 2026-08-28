@@ -60,7 +60,7 @@ const LoveMessageModal = ({ isOpen, onClose }) => {
                 
                 <div className="text-left space-y-4 text-sm md:text-base leading-relaxed">
                   <p className="text-automotive-chrome">
-                    ek kan nie glo ons is al 'n hele maand saam nie... dis actually so crazy om te dink dat ons mekaar op 'n game ontmoet het en nou beteken jy so baie vir my... van die eerste keer dat ek jou gesien het het ek sommer net iets gevoel... ek het jou van die begin af so mooi gevind en ek het net al hoe meer vir jou begin val...
+                    ek kan nie glo ons is al 'n hele maand saam nie... dis actually so crazy om te dink dat ons mekaar op 'n game ontmoet het en nou beteken jy so baie vir my... van die eerste keer dat ek jou gesien het het ek sommer net iets gevoel... ek het jou van die begin af so handsome en sexy gevind en ek het net al hoe meer vir jou begin val...
                   </p>
                   
                   <p className="text-automotive-chrome">
