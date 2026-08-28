@@ -67,19 +67,30 @@ const CarComparison = () => {
       </div>
 
       <div className="relative z-10">
-        <motion.h3
-          className="text-lg md:text-xl font-black mb-4 text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          style={{
-            background: 'linear-gradient(90deg, #CC0000, #FFD700, #0066B1)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            textShadow: '0 0 20px rgba(255, 215, 0, 0.5)',
-          }}
-        >
-          HONDA VS BMW SHOWDOWN
-        </motion.h3>
+
+<motion.h3 className="w-full mb-6 flex items-center justify-center text-center select-none uppercase">
+  {/* Polished Chrome Silver Gradient for HONDA */}
+  <span className="bg-gradient-to-b from-[#ffffff] via-[#dcdcdc] to-[#8c8c8c] bg-clip-text text-transparent font-black text-2xl tracking-[0.15em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+    HONDA
+  </span>
+  
+  {/* Stark Minimalist Divider */}
+  <span className="text-neutral-500 font-medium text-lg mx-5 tracking-normal opacity-50">
+    VS
+  </span>
+  
+  {/* Unified Solid 3-Stripe M-Power Text Block for BMW */}
+  <span className="inline-flex font-black text-2xl tracking-normal mr-4 drop-shadow-[0_2px_6px_rgba(59,130,246,0.35)]">
+    <span className="text-[#00a3da]">B</span>
+    <span className="text-[#002663]">M</span>
+    <span className="text-[#e20613]">W</span>
+  </span>
+
+  {/* Clean Showcase End Title */}
+  <span className="text-white font-black text-2xl tracking-wider">
+    SHOWDOWN
+  </span>
+</motion.h3>
 
         {/* Car Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -121,7 +132,17 @@ const CarComparison = () => {
                     className="w-16 h-16 mx-auto mb-2 object-contain"
                   />
                 )}
-                <h4 className={`text-xl md:text-2xl font-black ${car.color} mb-1`} style={{ textShadow: `0 0 15px ${key === 'honda' ? 'rgba(204, 0, 0, 0.8)' : 'rgba(0, 102, 177, 0.8)'}` }}>{car.name}</h4>
+                <h4 className="text-xl md:text-2xl font-black mb-1">
+                  {key === 'honda' ? (
+                    <span className="bg-gradient-to-b from-[#ffffff] via-[#dcdcdc] to-[#8c8c8c] bg-clip-text text-transparent">{car.name}</span>
+                  ) : (
+                    <span className="inline-flex">
+                      <span className="text-[#00a3da]">B</span>
+                      <span className="text-[#002663]">M</span>
+                      <span className="text-[#e20613]">W</span>
+                    </span>
+                  )}
+                </h4>
                 <p className="text-white font-black text-xs md:text-sm">{car.model}</p>
               </div>
             </motion.div>
@@ -189,33 +210,33 @@ const CarComparison = () => {
 
         {/* VS Animation */}
         <motion.div
-          className="flex justify-center items-center gap-4 mt-6"
+          className="flex items-center justify-center gap-x-4 mt-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <motion.div
-            className="text-5xl"
+          <motion.img
+            src={cars.honda.logo}
+            alt="Honda"
+            className="h-10 w-10 object-contain"
             animate={{ x: [0, 15, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            🏎️
-          </motion.div>
+          />
           <motion.div
-            className="text-6xl font-black text-automotive-gold"
+            className="text-4xl font-black text-automotive-gold"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
             style={{ textShadow: '0 0 30px rgba(255, 215, 0, 0.8)' }}
           >
             VS
           </motion.div>
-          <motion.div
-            className="text-5xl"
+          <motion.img
+            src={cars.bmw.logo}
+            alt="BMW"
+            className="h-10 w-10 object-contain"
             animate={{ x: [0, -15, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            🚙
-          </motion.div>
+          />
         </motion.div>
 
         <motion.p

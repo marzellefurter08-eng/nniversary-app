@@ -86,67 +86,72 @@ const DualWorldClocks = () => {
           SOUTH AFRICA CONNECTION
         </motion.h3>
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 px-6">
-          {/* Durban - My Time */}
-          <motion.div
-            className="flex flex-col items-center min-w-[120px]"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
-            <div className="text-xs text-automotive-chrome font-black mb-1" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>DURBAN</div>
-            <motion.div
-              className="text-2xl md:text-3xl font-black text-honda-red"
-              animate={{ 
-                scale: [1, 1.05, 1],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              style={{ textShadow: '0 0 20px rgba(204, 0, 0, 0.8)' }}
-            >
-              {formatTime(myTime)}
-            </motion.div>
-            <div className="text-[10px] text-kawasaki-lime mt-1 font-black" style={{ textShadow: '0 0 10px rgba(50, 205, 50, 0.6)' }}>{formatDate(myTime)}</div>
-          </motion.div>
-
-          {/* Racing Connection */}
-          <div className="relative flex items-center justify-center w-12">
-            <motion.div
-              className="w-10 h-1 bg-gradient-to-r from-honda-red via-kawasaki-green to-bmw-blue rounded-full"
-              animate={{
-                scaleX: [1, 1.3, 1],
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute w-2 h-2 bg-automotive-gold rounded-full"
-              animate={{
-                x: [-20, 20, -20],
-                scale: [1, 1.5, 1],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              style={{ boxShadow: '0 0 20px rgba(255, 215, 0, 0.8)' }}
-            />
+        <div className="w-full relative px-6 py-4 flex flex-col gap-y-4">
+          {/* Layer 1: Visual Slider (Line and Dot) */}
+          <div className="w-full h-8 flex items-center justify-center my-2">
+            <div className="relative flex items-center justify-center">
+              <motion.div
+                className="w-32 h-1 bg-gradient-to-r from-honda-red via-kawasaki-green to-bmw-blue rounded-full"
+                animate={{
+                  scaleX: [1, 1.3, 1],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <motion.div
+                className="absolute w-2 h-2 bg-automotive-gold rounded-full"
+                animate={{
+                  x: [-64, 64, -64],
+                  scale: [1, 1.5, 1],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ boxShadow: '0 0 20px rgba(255, 215, 0, 0.8)' }}
+              />
+            </div>
           </div>
 
-          {/* Rustenburg - His Time */}
-          <motion.div
-            className="flex flex-col items-center min-w-[120px]"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
-            <div className="text-xs text-automotive-chrome font-black mb-1" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>RUSTENBURG</div>
+          {/* Layer 2: Twin City Columns */}
+          <div className="w-full flex items-center justify-between">
+            {/* Durban - Left Column */}
             <motion.div
-              className="text-2xl md:text-3xl font-black text-bmw-blue"
-              animate={{ 
-                scale: [1, 1.05, 1],
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-              style={{ textShadow: '0 0 20px rgba(0, 102, 177, 0.8)' }}
+              className="w-[45%] flex flex-col items-center text-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
-              {formatTime(hisTime)}
+              <div className="text-xs text-automotive-chrome font-black mb-1" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>DURBAN</div>
+              <motion.div
+                className="text-xl font-black text-honda-red"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ textShadow: '0 0 20px rgba(204, 0, 0, 0.8)' }}
+              >
+                {formatTime(myTime)}
+              </motion.div>
+              <div className="text-[10px] text-kawasaki-lime mt-1 font-black" style={{ textShadow: '0 0 10px rgba(50, 205, 50, 0.6)' }}>{formatDate(myTime)}</div>
             </motion.div>
-            <div className="text-[10px] text-kawasaki-lime mt-1 font-black" style={{ textShadow: '0 0 10px rgba(50, 205, 50, 0.6)' }}>{formatDate(hisTime)}</div>
-          </motion.div>
+
+            {/* Rustenburg - Right Column */}
+            <motion.div
+              className="w-[45%] flex flex-col items-center text-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <div className="text-xs text-automotive-chrome font-black mb-1" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>RUSTENBURG</div>
+              <motion.div
+                className="text-xl font-black text-bmw-blue"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                style={{ textShadow: '0 0 20px rgba(0, 102, 177, 0.8)' }}
+              >
+                {formatTime(hisTime)}
+              </motion.div>
+              <div className="text-[10px] text-kawasaki-lime mt-1 font-black" style={{ textShadow: '0 0 10px rgba(50, 205, 50, 0.6)' }}>{formatDate(hisTime)}</div>
+            </motion.div>
+          </div>
         </div>
 
         <motion.div

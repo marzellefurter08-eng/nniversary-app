@@ -73,14 +73,14 @@ function App() {
                 className="text-3xl md:text-5xl font-black mb-2"
                 animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                style={{
-                  background: 'linear-gradient(90deg, #CC0000, #FFD700, #0066B1)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 0 30px rgba(255, 215, 0, 0.6)',
-                }}
               >
-                🏎️ HONDA ❤️ BMW 🚙
+                <span className="bg-gradient-to-b from-[#ffffff] via-[#dcdcdc] to-[#8c8c8c] bg-clip-text text-transparent font-black tracking-[0.15em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">HONDA</span>
+                <span className="mx-2">❤️</span>
+                <span className="inline-flex font-black tracking-normal drop-shadow-[0_2px_6px_rgba(59,130,246,0.35)]">
+                  <span className="text-[#00a3da]">B</span>
+                  <span className="text-[#002663]">M</span>
+                  <span className="text-[#e20613]">W</span>
+                </span>
               </motion.h1>
               <motion.p
                 className="text-automotive-chrome text-base md:text-lg font-bold"

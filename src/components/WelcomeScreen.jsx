@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const WelcomeScreen = ({ onEnter }) => {
@@ -6,6 +6,7 @@ const WelcomeScreen = ({ onEnter }) => {
   const [buttonPressed, setButtonPressed] = useState(false)
   const [statusMessage, setStatusMessage] = useState('STAGE 1: IGNITION ENGAGED...')
   const [showGauge, setShowGauge] = useState(false)
+  const [rpm, setRpm] = useState(0)
 
   const statusMessages = [
     'STAGE 1: IGNITION ENGAGED...',
@@ -15,12 +16,23 @@ const WelcomeScreen = ({ onEnter }) => {
 
   const handleEnter = () => {
     setButtonPressed(true)
-    
+
     // Apply rumble effect
     setTimeout(() => {
       setIsConnecting(true)
       setShowGauge(true)
-      
+
+      // Animate RPM from 0 to 9000
+      let currentRpm = 0
+      const rpmInterval = setInterval(() => {
+        currentRpm += 150 // Increment by 150 every 50ms
+        if (currentRpm >= 9000) {
+          currentRpm = 9000
+          clearInterval(rpmInterval)
+        }
+        setRpm(currentRpm)
+      }, 50)
+
       // Cycle through status messages
       let messageIndex = 0
       const messageInterval = setInterval(() => {
@@ -31,6 +43,7 @@ const WelcomeScreen = ({ onEnter }) => {
       // Transition to dashboard after 2.5 seconds
       setTimeout(() => {
         clearInterval(messageInterval)
+        clearInterval(rpmInterval)
         onEnter()
       }, 2500)
     }, 300)
@@ -55,25 +68,25 @@ const WelcomeScreen = ({ onEnter }) => {
                 transition={{ duration: 0.3 }}
                 className="space-y-8"
               >
-                {/* Honda and BMW Cars */}
+                {/* Honda and BMW Logos */}
                 <div className="flex justify-center items-center gap-8 md:gap-16 mb-8">
-                  <motion.div
-                    className="text-7xl md:text-9xl"
+                  <motion.img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesofEKVxNTVdwAMXDeOdRrt3GP8iSMOt8BZxq34wnpUKwYZacEqJlyxI&s=10"
+                    alt="Honda"
+                    className="h-12 w-12 object-contain"
                     animate={{ scale: [1, 1.1, 1], rotate: [-5, 5, -5] }}
                     transition={{ duration: 3, repeat: Infinity }}
                     style={{ filter: 'drop-shadow(0 0 20px rgba(204, 0, 0, 0.8))' }}
-                  >
-                    🚗
-                  </motion.div>
+                  />
 
-                  <motion.div
-                    className="text-7xl md:text-9xl"
+                  <motion.img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuiWkyr0v3L6z4tuNGSzIEJFnzWrxhY_rN_fB0yBxcow&s"
+                    alt="BMW"
+                    className="h-12 w-12 object-contain"
                     animate={{ scale: [1, 1.1, 1], rotate: [5, -5, 5] }}
                     transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
                     style={{ filter: 'drop-shadow(0 0 20px rgba(0, 102, 177, 0.8))' }}
-                  >
-                    🚙
-                  </motion.div>
+                  />
                 </div>
 
                 <motion.h1
@@ -81,14 +94,14 @@ const WelcomeScreen = ({ onEnter }) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  style={{
-                    background: 'linear-gradient(90deg, #CC0000, #FFD700, #0066B1)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    textShadow: '0 0 30px rgba(255, 215, 0, 0.5)',
-                  }}
                 >
-                  HONDA ❤️ BMW
+                  <span className="bg-gradient-to-b from-[#ffffff] via-[#dcdcdc] to-[#8c8c8c] bg-clip-text text-transparent font-black tracking-[0.15em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">HONDA</span>
+                  <span className="mx-2">❤️</span>
+                  <span className="inline-flex font-black tracking-normal drop-shadow-[0_2px_6px_rgba(59,130,246,0.35)]">
+                    <span className="text-[#00a3da]">B</span>
+                    <span className="text-[#002663]">M</span>
+                    <span className="text-[#e20613]">W</span>
+                  </span>
                 </motion.h1>
                 
                 <motion.p
@@ -182,7 +195,7 @@ const WelcomeScreen = ({ onEnter }) => {
 
                 {/* RPM Display */}
                 <div className="text-6xl font-black text-automotive-gold" style={{ textShadow: '0 0 30px rgba(255, 215, 0, 0.8)' }}>
-                  {showGauge ? '9000' : '0'}
+                  {Math.floor(rpm)}
                 </div>
                 <div className="text-sm font-bold text-automotive-chrome">RPM</div>
               </motion.div>
